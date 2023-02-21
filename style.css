@@ -1,8 +1,0 @@
-
-.table{
-    transition: opacity 0.2s ease-in;
-}
-
-.hidden {
-  opacity: 0;
-}

@@ -19,5 +19,4 @@ const dataPegawai = [
 
 //mock data di export
 //perumpamaan data json
-// module.exports = dataPegawai;
 export default dataPegawai;

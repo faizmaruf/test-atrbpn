@@ -1,8 +1,7 @@
 //import data, asumsi data di get dari database
 import dataPegawai from "./data.js"
 
-
-//fungsi membuar table
+//fungsi membuat table
 $(document).ready(function () {
     // Mendapatkan referensi ke tabel
     var table = $('<table>');
@@ -19,13 +18,14 @@ $(document).ready(function () {
     var tbody = $('<tbody>');
     $.each(dataPegawai, function (i, rowData) {
         var dataRow = $('<tr>');
+
         dataRow.append($('<td>').text(i + 1));
         dataRow.append($('<td>').text(rowData.kodeUnitKerja));
         dataRow.append($('<td>').text(rowData.UnitKerja));
         tbody.append(dataRow);
-        $('tr').attr('id', 'test');
     });
     table.append(tbody);
+
 
     // Menambahkan tabel ke dalam dokumen
     $('div.container').append(table);
@@ -33,20 +33,35 @@ $(document).ready(function () {
 
 });
 
+//menambahkan id di tiap table row
+$(document).ready(function () {
+    let j = 1;
+    $.each(dataPegawai, function (i, rowData) {
+        $('tbody tr:nth-of-type(' + j + ')').attr('id', rowData.id);
+        j++
+    });
+});
+
+
 // toogle button untuk hide dan show table
 $(document).ready(function () {
     $('#toggle-btn').click(function () {
         $(this).toggleClass('btn-danger btn-success');
         if ($(this).text() == "Hide") {
             $(this).text("Show");
-            $('table').addClass('hidden')
+            $('table').addClass('d-none')
         } else {
             $(this).text("Hide");
-            $('table').removeClass('hidden');
+            $('table').removeClass('d-none');
         }
     });
 });
 
-$("h2").click(function () {
-    alert("asdas");
-});
+//click alert
+$(document).ready(function () {
+    $("tr").click(function () {
+        let id = $(this).attr('id');
+        const kodeUnitKerja = dataPegawai.filter((data) => data.id == id)[0].kodeUnitKerja
+        alert("Kode Unit Kerja : " + kodeUnitKerja);
+    });
+})
